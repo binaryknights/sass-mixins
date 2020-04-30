@@ -1,0 +1,41 @@
+@mixin code(
+  $font-family,
+  $padding: 0.2rem 0.5rem,
+  $color: var(--color-font),
+  $font-size: 100%,
+  $background: rgba(0, 0, 0, 0.05),
+  $border: 1px solid var(--color-border),
+  $border-radius: 0.3rem
+) {
+  padding: $padding;
+  color: $color;
+  font-size: $font-size;
+  font-family: $font-family;
+  word-break: break-word;
+  background: $background;
+  border: $border;
+  border-radius: $border-radius;
+}
+
+@mixin pre(
+  $font-family,
+  $margin: 0 0 1.5rem 0,
+  $padding: 1rem 1.5rem,
+  $color: var(--color-font),
+  $font-size: 95%,
+  $background: rgba(0, 0, 0, 0.05),
+  $border: 1pxsolid var(--color-border),
+  $border-radius: 0.3rem
+) {
+  display: block;
+  margin: $margin;
+  padding: $padding;
+  overflow-x: auto;
+  color: $color;
+  font-size: $font-size;
+  font-family: $font-family;
+  white-space: pre;
+  background: $background;
+  border: $border;
+  border-radius: $border-radius;
+}

@@ -1,0 +1,12 @@
+@mixin hr (
+  $width: 1px,
+  $color: var(--color-border),
+  $margin: 1.5rem 0
+) {
+  box-sizing: content-box;
+  height: 0;
+  margin: $margin;
+  overflow: visible;
+  border: 0;
+  border-top: $width solid $color;
+}

@@ -1,0 +1,15 @@
+@mixin list(
+  $margin: 0 0 1.5rem 0,
+  $padding: 0,
+  $list-style: circle inside,
+  $nested-margin: 0 0 0 2rem
+) {
+  margin: $margin;
+  padding: $padding;
+  list-style: $list-style;
+
+  ul,
+  ol {
+    margin: $nested-margin;
+  }
+}

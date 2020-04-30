@@ -1,0 +1,9 @@
+@mixin anchor(
+  $color,
+  $text-decoration: none,
+  $background-color: transparent,
+) {
+  color: $color;
+  text-decoration: $text-decoration;
+  background-color: $background-color;
+}

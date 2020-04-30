@@ -1,0 +1,41 @@
+@mixin table(
+  $margin: 0 0 1.5rem 0,
+  $font-size: 90%,
+  $background: transparent,
+  $cell-padding: 1rem,
+  $border-color: var(--color-border),
+  $stripe-background: null
+) {
+  width: 100%;
+  max-width: 100%;
+  margin: $margin;
+  font-size: $font-size;
+  background: $background;
+  border-collapse: collapse;
+  border-spacing: 0;
+
+  caption {
+    padding: $cell-padding;
+  }
+
+  th {
+    padding: $cell-padding;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  td {
+    padding: $cell-padding;
+    text-align: left;
+    vertical-align: top;
+    border-top: 1px solid $border-color;
+  }
+
+  &.table-bordered {
+    border: 1px solid $border-color;
+  }
+
+  &.table-striped > tbody > tr:nth-child(odd) {
+    background: $stripe-background;
+  }
+}

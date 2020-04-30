@@ -1,0 +1,97 @@
+@use './breakpoint';
+
+// make a grid row
+@mixin make-flex-grid-row(
+  $gutter-width
+) {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -$gutter-width / 2;
+  margin-left: -$gutter-width / 2;
+}
+
+// make a grid column
+@mixin make-flex-grid-col(
+  $size,
+  $columns
+) {
+  flex: 0 0 percentage($size / $columns);
+  // Add a `max-width` to ensure content within each column does not blow out
+  // the width of the column. Applies to IE10+ and Firefox.
+  max-width: percentage($size / $columns);
+}
+
+// make a grid column offset
+@mixin make-flex-grid-col-offset(
+  $size,
+  $columns
+) {
+  $num: $size / $columns;
+
+  margin-left: if($num == 0, 0, percentage($num));
+}
+
+// grid framework
+@mixin make-flex-grid-columns(
+  $columns,
+  $gutter-width,
+  $breakpoints
+) {
+  // Common properties for all breakpoints
+  %grid-column {
+    position: relative;
+    width: 100%;
+    padding-right: ($gutter-width / 2);
+    padding-left: ($gutter-width / 2);
+  }
+
+  @each $breakpoint in map-keys($breakpoints) {
+    $infix: breakpoint.breakpoint-infix($breakpoint, $breakpoints);
+
+    // Allow columns to stretch full width below their breakpoints
+    @for $i from 1 through $columns {
+      .col#{$infix}-#{$i} {
+        @extend %grid-column;
+      }
+    }
+
+    .col#{$infix},
+    .col#{$infix}-auto {
+      @extend %grid-column;
+    }
+
+    @include breakpoint.media-breakpoint-up($breakpoint, $breakpoints) {
+      // Provide basic `.col-{bp}` classes for equal-width flexbox columns
+      .col#{$infix} {
+        flex-basis: 0;
+        flex-grow: 1;
+        max-width: 100%;
+      }
+
+      .col#{$infix}-auto {
+        flex: 0 0 auto;
+        width: auto;
+        max-width: 100%; // Reset earlier grid tiers
+      }
+
+      @for $i from 1 through $columns {
+        .col#{$infix}-#{$i} {
+          @include make-flex-grid-col($i, $columns);
+        }
+      }
+
+      @for $i from 1 through $columns {
+        .order#{$infix}-#{$i} {
+          order: $i;
+        }
+      }
+
+      // here we dont need the full with as you cannot offset by 100%
+      @for $i from 1 through ($columns - 1) {
+        .offset#{$infix}-#{$i} {
+          @include make-flex-grid-col-offset($i, $columns);
+        }
+      }
+    }
+  }
+}

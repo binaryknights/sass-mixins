@@ -1,0 +1,202 @@
+// IMPORTS
+// ----------------------------------------------------------------
+@use 'sass:color';
+@use '../../scss/sass-mixins';
+
+// INFO
+// ----------------------------------------------------------------
+// html is set to 62.5% so that all the REM measurements
+// are based on 10px sizing. So basically 1.5rem = 15px :)
+//
+// hover and focus states are NOT included
+
+// UNSTYLED ELEMENTS
+// ----------------------------------------------------------------
+// kbd
+// samp
+// legend
+// fieldset
+// figcaption
+// figure
+
+// RESETS
+// ----------------------------------------------------------------
+@include sass-mixins.base-reset;
+
+// FLEX GRID SYSTEM
+// ----------------------------------------------------------------
+
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px
+);
+$breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px
+);
+$flex-grid-columns: 12;
+$flex-grid-gutter-width: 30px;
+
+// containers
+.container {
+  @include sass-mixins.make-container($flex-grid-gutter-width);
+  @include sass-mixins.make-container-max-widths(
+    $container-max-widths,
+    $breakpoints
+  );
+}
+
+// fluid container
+.container-fluid {
+  @include sass-mixins.make-container($flex-grid-gutter-width);
+}
+
+// row
+.row {
+  @include sass-mixins.make-flex-grid-row($flex-grid-gutter-width);
+}
+
+// columns
+@include sass-mixins.make-flex-grid-columns(
+  $flex-grid-columns,
+  $flex-grid-gutter-width,
+  $breakpoints
+);
+
+// BASE STYLE VARIABLES
+// ----------------------------------------------------------------
+$font-family: 'Roboto', sans-serif;
+$code-font-family: 'Inconsolata', monospace;
+
+$black:         rgb(0 0 0);
+$white:         rgb(255 255 255);
+$primary:       rgb(51 195 240);
+$secondary:     rgb(240 240 240);
+$charcoal:      rgb(62 62 62);
+$gainsboro:     rgb(218 218 218);
+
+// BASE STYLES
+// ----------------------------------------------------------------
+:root {
+  --color-primary: #{$primary};
+  --color-primary-darken-20: #{color.scale($primary, $lightness: -20%)};
+  --color-secondary: #{$secondary};
+  --color-secondary-darken-20: #{color.scale($secondary, $lightness: -20%)};
+  --color-black: #{$black};
+  --color-black-at-alpha-05: #{color.adjust($black, $alpha: -0.95)};
+  --color-white: #{$white};
+  --color-font: #{$charcoal};
+  --color-border: #{$gainsboro};
+}
+
+html {
+  font-size: 62.5%;
+  line-height: 1.6;
+  text-size-adjust: 100%;
+}
+
+body {
+  color: var(--color-font);
+  font-weight: normal;
+  font-size: 15px;
+  font-family: $font-family;
+  font-style: normal;
+}
+
+h1 {
+  @include sass-mixins.header($font-family, 300, 4rem);
+}
+
+h2 {
+  @include sass-mixins.header($font-family, 300, 3.4rem);
+}
+
+h3 {
+  @include sass-mixins.header($font-family, 300, 2.8rem);
+}
+
+p {
+  margin-bottom: 1.5rem;
+}
+
+strong {
+  font-weight: 700;
+}
+
+small {
+  font-size: 80%;
+}
+
+ul {
+  @include sass-mixins.list($list-style: circle inside);
+}
+
+ol {
+  @include sass-mixins.list($list-style: decimal inside);
+}
+
+hr {
+  @include sass-mixins.hr;
+}
+
+blockquote {
+  @include sass-mixins.blockquote;
+}
+
+a {
+  @include sass-mixins.anchor(var(--color-primary));
+}
+
+code {
+  @include sass-mixins.code($code-font-family);
+}
+
+pre {
+  @include sass-mixins.pre($code-font-family);
+}
+
+table {
+  @include sass-mixins.table($stripe-background: var(--color-black-at-alpha-05));
+}
+
+form {
+  margin-bottom: 1.5rem;
+}
+
+label {
+  display: block;
+}
+
+.field {
+  @include sass-mixins.field;
+}
+
+.button {
+  @include sass-mixins.button;
+  @include sass-mixins.button-color(
+    var(--color-font),
+    var(--color-white),
+    var(--color-border)
+  );
+}
+
+.button-primary {
+  @include sass-mixins.button-color(
+    var(--color-white),
+    var(--color-primary),
+    var(--color-primary-darken-20)
+  );
+}
+
+.button-secondary {
+  @include sass-mixins.button-color(
+    var(--color-font),
+    var(--color-secondary),
+    var(--color-secondary-darken-20)
+  );
+}
