@@ -23,9 +23,9 @@
 @mixin button-color(
   $color,
   $background-color,
-  $border-color
+  $border,
 ) {
   color: $color;
   background-color: $background-color;
-  border-color: $border-color;
+  border: $border;
 }

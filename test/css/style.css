@@ -1149,19 +1149,19 @@ textarea.field {
   user-select: none;
   color: var(--color-font);
   background-color: var(--color-white);
-  border-color: var(--color-border);
+  border: 1px solid var(--color-border);
 }
 
 .button-primary {
   color: var(--color-white);
   background-color: var(--color-primary);
-  border-color: var(--color-primary-darken-20);
+  border: 1px solid var(--color-primary-darken-20);
 }
 
 .button-secondary {
   color: var(--color-font);
   background-color: var(--color-secondary);
-  border-color: var(--color-secondary-darken-20);
+  border: 1px solid var(--color-secondary-darken-20);
 }
 
 /*# sourceMappingURL=style.css.map */

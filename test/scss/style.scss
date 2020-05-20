@@ -181,7 +181,7 @@ label {
   @include sass-mixins.button-color(
     var(--color-font),
     var(--color-white),
-    var(--color-border)
+    1px solid var(--color-border)
   );
 }
 
@@ -189,7 +189,7 @@ label {
   @include sass-mixins.button-color(
     var(--color-white),
     var(--color-primary),
-    var(--color-primary-darken-20)
+    1px solid var(--color-primary-darken-20)
   );
 }
 
@@ -197,6 +197,6 @@ label {
   @include sass-mixins.button-color(
     var(--color-font),
     var(--color-secondary),
-    var(--color-secondary-darken-20)
+    1px solid var(--color-secondary-darken-20)
   );
 }
