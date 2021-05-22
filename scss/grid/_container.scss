@@ -1,4 +1,5 @@
 @use './breakpoint';
+@use 'sass:math';
 
 // used in .container and .container-fluid
 @mixin make-container(
@@ -7,8 +8,8 @@
   width: 100%;
   margin-right: auto;
   margin-left: auto;
-  padding-right: ($gutter-width / 2);
-  padding-left: ($gutter-width / 2);
+  padding-right: math.div($gutter-width, 2);
+  padding-left: math.div($gutter-width, 2);
 }
 
 // For each breakpoint, define the maximum width of the container
